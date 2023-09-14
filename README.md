@@ -1,6 +1,7 @@
 # cse210-student-template
 This is the starter code for students in CSE 210.
-My name is Ramon and I am in this course
+
+My name is Ramon Vargas and I am in this course.
 
 This repository contains the starter code for many different projects. They are arranged as follows:
 
