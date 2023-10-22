@@ -1,4 +1,4 @@
-// Class to represent the reference (e.g., "Proverbs 3:5-6")
+ 
 class Reference
 {
     private string _book;
