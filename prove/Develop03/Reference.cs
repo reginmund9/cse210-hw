@@ -1,32 +1,35 @@
-
-class Reference 
+// Class to represent the reference (e.g., "Proverbs 3:5-6")
+class Reference
 {
-    private String _author;
+    private string _book;
     private int _chapter;
     private int _startVerse;
     private int _endVerse;
 
-    public Reference(String author, int chapter, int startVerse)
+    public Reference(string reference)
     {
-        _author = author;
-        _chapter = chapter;
-        _startVerse = startVerse;
+        // Parse the reference and initialize the properties
+        string[] parts = reference.Split(' ');
+        string[] chapterVerse = parts[1].Split(':');
+        string[] verses = chapterVerse[1].Split('-');
+
+        this._book = parts[0];
+        this._chapter = int.Parse(chapterVerse[0]);
+        this._startVerse = int.Parse(verses[0]);
+        this._endVerse = verses.Length > 1 ? int.Parse(verses[1]) : this._startVerse;
     }
 
-    public Reference(String author, int chapter, int startVerse, int endVerse)
+    public string GetFormattedReference()
     {
-        _author = author;
-        _chapter = chapter;
-        _startVerse = startVerse;
-        _endVerse = endVerse;
-    }
-
-    public String GetReference() 
-    {
-        if (_endVerse == 0) {
-            return $"{_author} {_chapter}:{_startVerse}";
-
+        if (_startVerse == _endVerse)
+        {
+            return $"{_book} {_chapter}:{_startVerse}";
         }
-            return $"{_author} {_chapter}:{_startVerse}-{_endVerse}";
+        else
+        {
+            return $"{_book} {_chapter}:{_startVerse}-{_endVerse}";
+        }
     }
 }
+
+

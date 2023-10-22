@@ -1,21 +1,33 @@
-class Word 
+// Class to represent a word in the scripture
+class Word
 {
-    private String _word;
-    private Boolean _isHiden = false;
-    public Boolean IsHidden
+    private string _word;
+    private bool _isHidden;
+
+    public Word(string word)
     {
-        get { return _isHiden; }
-        set { _isHiden = value; }
+        this._word = word;
+        _isHidden = false;
     }
 
-    public String Words
+    public string GetWord()
     {
-        get { return _word; }
-        set { _word = value; }
+        return _word;
     }
 
-    public Word(String word)
+    public bool IsHidden()
     {
-        _word = word;
+        return _isHidden;
+    }
+
+    public void Hide()
+    {
+        _isHidden = true;
+    }
+
+    public string GetDisplayText()
+    {
+        return IsHidden() ? new string('_', GetWord().Length) : GetWord();
     }
 }
+

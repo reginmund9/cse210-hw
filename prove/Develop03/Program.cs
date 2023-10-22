@@ -1,34 +1,34 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Scripture scripture = new ScriptureHolder().GiveScripture();
-        WordHandler wordHandler = new WordHandler();
-        int amountOfHiding = 3;
+        // Create a new scripture
+        Scripture myScripture = new Scripture("Proverbs 3:5-6", "Trust in the LORD with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.");
 
-        Console.Clear();
-        Console.Write($"Profide your amount of hiding words in single iteration (by defoult it is 3): ");
-        String userAmount = Console.ReadLine();
-        amountOfHiding = int.Parse(userAmount);
+        // Display the original scripture
+        myScripture.Display();
 
-        while (true) {
-            Console.Clear();
+        // Continue prompting the user until all words are hidden
+        while (!myScripture.AllWordsHidden())
+        {
+            Console.WriteLine("Press Enter to continue or type 'quit' to exit.");
+            string userInput = Console.ReadLine();
 
-            Console.WriteLine(scripture.GetStringScripture());
-            Console.Write($"\nPress enter or type 'quite' to finish: ");
-
-            String answer = Console.ReadLine();
-            int hidenWordsCount = scripture.Words.Where(it => !it.IsHidden).Count();
-
-            if (answer == "quite" || hidenWordsCount == 0)
+            if (userInput.ToLower() == "quit")
             {
                 break;
-            } else
-            {
-                wordHandler.HideWords(scripture.Words, amountOfHiding);
             }
+
+            // Hide random words and display the updated scripture
+            myScripture.HideRandomWord();
+            myScripture.Display();
         }
+
+        Console.WriteLine("Program ended.");
     }
 }
+
