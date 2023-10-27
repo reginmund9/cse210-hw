@@ -27,10 +27,6 @@ class Program
                     string response = Console.ReadLine();
                     Entry entry = new Entry(prompt, response);
                     journal.AddEntry(entry);
-                    //Entry entry = GetRandomPrompt();
-                    //Console.WriteLine($"{entry._prompt}\nYour response: ");
-                    //entry._response = Console.ReadLine();
-                    //journal.AddEntry(entry);
                     break;
 
                 case "2":
@@ -97,23 +93,6 @@ class Program
         int index = random.Next(prompts.Count);
         return prompts[index];
     }
-    /*static Entry GetRandomPrompt()
-    {
-        List<Entry> prompts = new List<Entry>
-        {
-            new Entry("Who was the most interesting person I interacted with today?", ""),
-            new Entry("What was the best part of my day?", ""),
-            new Entry("What scripture did I read?", ""),
-            new Entry("What was the strongest emotion I felt today?", ""),
-            new Entry("What challenges did I have?", ""),
-            new Entry("How did I face a challenge?", ""),
-            new Entry("What goals do I have today?", "")
-        };
-
-        Random random = new Random();
-        int index = random.Next(prompts.Count);
-        return prompts[index];
-    }*/
 
 }
 
