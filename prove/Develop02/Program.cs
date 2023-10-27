@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
 class Program
 {
     static void Main(string[] args)
@@ -23,15 +22,15 @@ class Program
             switch (choice)
             {
                 case "1":
-                    //string prompt = GetRandomPrompt();
-                    //Console.WriteLine($"{prompt}\nYour response: ");
-                    //string response = Console.ReadLine();
-                    //Entry entry = new Entry(prompt, response);
-                    //journal.AddEntry(entry);
-                    Entry entry = GetRandomPrompt();
-                    Console.WriteLine($"{entry._prompt}\nYour response: ");
-                    entry._response = Console.ReadLine();
+                    string prompt = GetRandomPrompt();
+                    Console.WriteLine($"{prompt}\nYour response: ");
+                    string response = Console.ReadLine();
+                    Entry entry = new Entry(prompt, response);
                     journal.AddEntry(entry);
+                    //Entry entry = GetRandomPrompt();
+                    //Console.WriteLine($"{entry._prompt}\nYour response: ");
+                    //entry._response = Console.ReadLine();
+                    //journal.AddEntry(entry);
                     break;
 
                 case "2":
@@ -63,8 +62,7 @@ class Program
                         Console.WriteLine("Enter the new response: ");
                         string newResponse = Console.ReadLine();
 
-                        Entry editedEntry = new Entry(newPrompt, newResponse);
-                        journal.EditEntry(editIndex, editedEntry);
+                        journal.EditEntry(editIndex - 1, newPrompt, newResponse);
                     }
                     else
                     {
@@ -82,7 +80,7 @@ class Program
         }
     }
 
-    /*static string GetRandomPrompt()
+    static string GetRandomPrompt()
     {
         List<string> prompts = new List<string>
         {
@@ -98,8 +96,8 @@ class Program
         Random random = new Random();
         int index = random.Next(prompts.Count);
         return prompts[index];
-    }*/
-    static Entry GetRandomPrompt()
+    }
+    /*static Entry GetRandomPrompt()
     {
         List<Entry> prompts = new List<Entry>
         {
@@ -115,6 +113,13 @@ class Program
         Random random = new Random();
         int index = random.Next(prompts.Count);
         return prompts[index];
-    }
+    }*/
 
 }
+
+
+
+
+
+
+
