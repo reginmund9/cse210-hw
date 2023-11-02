@@ -1,20 +1,19 @@
 class Activity
 {
-    protected string Name;
-    protected string Description;
-    protected int Duration;
+    protected string _name;
+    protected string _description;
+    protected int _duration;
 
     public Activity(string name, string description)
     {
-        Name = name;
-        Description = description;
-        SetDuration();
+        _name = name;
+        _description = description;
     }
 
-    private void SetDuration()
+    public virtual void SetDuration()
     {
         Console.Write("Enter the duration of the activity in seconds: ");
-        while (!int.TryParse(Console.ReadLine(), out Duration) || Duration <= 0)
+        while (!int.TryParse(Console.ReadLine(), out _duration) || _duration <= 0)
         {
             Console.WriteLine("Invalid duration. Please enter a positive integer.");
             Console.Write("Enter the duration of the activity in seconds: ");
@@ -23,26 +22,24 @@ class Activity
 
     public virtual void DisplayStartingMessage()
     {
-        Console.WriteLine($"--- {Name} ---");
-        Console.WriteLine(Description);
-        Console.WriteLine($"Prepare to begin. Starting in {Duration} seconds.");
-        ShowSpinner(Duration);
+        Console.WriteLine($"\nWelcome to the {_name}\n");
+        Console.WriteLine($"{_description}\n");
     }
 
     public virtual void DisplayEndingMessage()
     {
-        Console.WriteLine("Great job! You've completed the activity.");
-        Console.WriteLine($"You've spent {Duration} seconds on {Name}.");
+        Console.WriteLine("\nGreat job! You've completed the activity.");
+        Console.WriteLine($"You've spent {_duration} seconds on {_name}.");
         ShowSpinner(5); // Pause for 5 seconds before finishing
-        Console.WriteLine("Activity finished. Goodbye!");
     }
 
     protected void ShowSpinner(int seconds)
     {
-        for (int i = 0; i < seconds; i++)
+        for (int i = seconds; i > 0; i--)
         {
-            Console.Write(".");
-            Thread.Sleep(1000); // Pause for 1 second
+            Console.Write($"{i}");
+            System.Threading.Thread.Sleep(1000); // Pause for 1 second
+            Console.Write("\b \b");
         }
         Console.WriteLine();
     }
@@ -51,5 +48,4 @@ class Activity
     {
         // This method will be overridden in derived classes
     }
-    
 }

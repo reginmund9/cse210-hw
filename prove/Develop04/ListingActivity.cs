@@ -12,18 +12,34 @@ class ListingActivity : Activity
 
     public override void PerformActivity()
     {
-        Console.WriteLine("Get ready to start the listing activity.");
+        Console.WriteLine("\nGet ready...");
+        ShowSpinner(5);
+
         Random random = new Random();
         string prompt = listingPrompts[random.Next(listingPrompts.Length)];
 
-        Console.WriteLine(prompt);
-        ShowSpinner(5); // Pause for 5 seconds before prompting to list items
-
-        Console.WriteLine("Start listing items...");
+        Console.WriteLine("\nList as many responses you can to the following prompt");
+        Console.WriteLine($"\n---{prompt}---"); 
+        Console.Write("You may begin in: ");
+        ShowSpinner(5);
+        
 
         // Simulate user listing items for the specified duration
-        ShowSpinner(Duration);
+        DateTime endTime = DateTime.Now.AddSeconds(_duration);
+        int linesCount = 0;
 
-        Console.WriteLine($"You've listed {random.Next(5, 15)} items.");
+        while (DateTime.Now < endTime)
+        {
+            string input = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                // User pressed enter without typing anything, so break the loop
+                break;
+            }
+            linesCount++;
+        }
+
+        Console.WriteLine($"You listed: {linesCount} items.");
     }
 }
+

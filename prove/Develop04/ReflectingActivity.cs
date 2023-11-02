@@ -23,20 +23,32 @@ class ReflectionActivity : Activity
 
     public override void PerformActivity()
     {
-        Console.WriteLine("Get ready to start the reflection activity.");
-        Random random = new Random();
+        Console.WriteLine("\nGet ready...");
+        ShowSpinner(5);
+        Console.WriteLine("\nConsider the following prompt:");
 
-        for (int i = 0; i < Duration; i++)
+        // Show a single random prompt
+        string prompt = prompts[new Random().Next(prompts.Length)];
+        Console.WriteLine($"\n---{prompt}---");
+
+        // Ask the user to press enter to continue
+        Console.WriteLine("\nWhen you have something in mind, press enter to continue.");
+        Console.ReadLine();
+
+        // Display message to ponder on questions
+        Console.WriteLine("\nNow ponder on each of the following questions as they relate to this experience.");
+
+        // Display countdown timer
+        Console.Write("You may begin in: ");
+        ShowSpinner(5);
+        Console.WriteLine();
+
+        // Show two random questions with pauses based on the activity duration
+        for (int i = 0; i < 2; i++)
         {
-            string prompt = prompts[random.Next(prompts.Length)];
-            Console.WriteLine(prompt);
-            ShowSpinner(2);
-
-            foreach (var question in reflectionQuestions)
-            {
-                Console.WriteLine(question);
-                ShowSpinner(2);
-            }
+            string randomQuestion = reflectionQuestions[new Random().Next(reflectionQuestions.Length)];
+            Console.WriteLine(randomQuestion);
+            ShowSpinner(_duration / 2); // Pause for half of the activity duration
         }
     }
 }

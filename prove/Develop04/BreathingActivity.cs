@@ -4,15 +4,15 @@ class BreathingActivity : Activity
 
     public override void PerformActivity()
     {
-        Console.WriteLine("Get ready to start the breathing exercise.");
-        for (int i = 0; i < Duration; i += 2)
+        Console.WriteLine("\nGet ready...");
+        ShowSpinner(5);
+
+        for (int i = 0; i < _duration; i += 2)
         {
-            Console.WriteLine("Breathe in...");
+            Console.WriteLine("\nBreathe in...");
             ShowSpinner(2);
-            Console.WriteLine("Breathe out...");
+            Console.WriteLine("Breathe out...\n");
             ShowSpinner(2);
         }
     }
 }
-
-
