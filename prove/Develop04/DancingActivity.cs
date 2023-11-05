@@ -18,7 +18,7 @@ class DancingActivity : Activity
         // Display countdown timer
         Console.Write("You may begin in: ");
         ShowSpinner(5);
-        
+        Console.WriteLine();
 
         // Simulate user dancing for the specified duration
         DateTime endTime = DateTime.Now.AddSeconds(_duration);
