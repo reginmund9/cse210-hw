@@ -9,10 +9,13 @@ class BreathingActivity : Activity
 
         for (int i = 0; i < _duration; i += 2)
         {
-            Console.WriteLine("\nBreathe in...");
-            ShowSpinner(2);
-            Console.WriteLine("Breathe out...\n");
-            ShowSpinner(2);
+            Console.Write("\nBreathe in...");
+            ShowSpinner(5);
+            
+            
+            Console.Write("Breathe out...");
+            ShowSpinner(5);
+            Console.WriteLine();
         }
     }
 }

@@ -11,18 +11,19 @@ class Program
             Console.WriteLine("1. Breathing Activity");
             Console.WriteLine("2. Reflection Activity");
             Console.WriteLine("3. Listing Activity");
-            Console.WriteLine("4. Quit");
-            Console.Write("Choose an activity (1-4): ");
+            Console.WriteLine("4. Dancing Activity");
+            Console.WriteLine("5. Quit");
+            Console.Write("Choose an activity (1-5): ");
             
 
             int choice;
-            while (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 4)
+            while (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 5)
             {
-                Console.WriteLine("Invalid choice. Please enter a number between 1 and 4.");
-                Console.Write("Choose an activity (1-4): ");
+                Console.WriteLine("Invalid choice. Please enter a number between 1 and 5.");
+                Console.Write("Choose an activity (1-5): ");
             }
 
-            if (choice == 4)
+            if (choice == 5)
             {
                 Console.WriteLine("Goodbye!");
                 break;
@@ -32,6 +33,7 @@ class Program
             BreathingActivity breathingActivity = new BreathingActivity("Breathing Activity");
             ReflectionActivity reflectionActivity = new ReflectionActivity("Reflection Activity");
             ListingActivity listingActivity = new ListingActivity("Listing Activity");
+            DancingActivity dancingActivity = new DancingActivity("Dancing Activity");
 
             // Execute selected activity
             switch (choice)
@@ -44,6 +46,9 @@ class Program
                     break;
                 case 3:
                     ExecuteActivity(listingActivity);
+                    break;
+                case 4:
+                ExecuteActivity(dancingActivity);
                     break;
                 default:
                     break;
