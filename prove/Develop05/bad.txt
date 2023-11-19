@@ -1,0 +1,4 @@
+4
+SimpleGoal,s,1,1
+EternalGoal,eter,1,1
+ChecklistGoal,check,1,1
