@@ -1,11 +1,11 @@
-class SimpleGoal : Goal
+public class SimpleGoal : Goal
 {
-    public SimpleGoal(string name, string description, int basePoints) : base(name, description, basePoints) { }
-
-    public override bool IsComplete()
+    public SimpleGoal(string name, string description, int points) : base(name, description, points)
     {
-        return _currentProgress > 0;
+    }
+
+    public override void Display()
+    {
+        Console.WriteLine($"[{(IsCompleted() ? "X" : " ")}] {_name} ({_description}), Points: {GetPoints()}");
     }
 }
-
-

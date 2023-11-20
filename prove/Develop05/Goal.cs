@@ -1,40 +1,47 @@
-class Goal
+public class Goal
 {
-    protected internal string _name;
-    protected internal string _description;
-    protected internal int _basePoints;
-    protected internal int _currentProgress;
+    protected string _name;
+    protected string _description;
+    protected int _points;
+    private bool _completed;
 
-    public Goal(string name, string description, int basePoints)
+    public Goal(string name, string description, int points)
     {
-        _name = name;
-        _description = description;
-        _basePoints = basePoints;
-        _currentProgress = 0;
+        this._name = name;
+        this._description = description;
+        this._points = points;
+        this._completed = false;
+    }
+
+    public virtual void Display()
+    {
+        Console.WriteLine($"[{(_completed ? "X" : " ")}] {_name} ({_description})");
     }
 
     public virtual void MarkComplete()
     {
-        Console.WriteLine($"Goal '{_name}' marked as complete!");
-        _currentProgress++;
+        _completed = true;
     }
 
-    public virtual int CalculatePoints()
+    public int GetPoints()
     {
-        return _basePoints;
+        return _points;
     }
 
-    public virtual bool IsComplete()
+    public bool IsCompleted()
     {
-        return false;
+        return _completed;
     }
 
-    public virtual void DisplayDetails()
+    public virtual void SaveToFile(StreamWriter writer)
     {
+        writer.WriteLine($"{GetType().Name}:{_name},{_description},{_points},{_completed}");
+    }
 
-        string completionStatus = IsComplete() ? "[X]" : "[ ]";
-        Console.WriteLine($"{completionStatus} {_name} ({_description})");
-        
+    public string Name
+    {
+        get { return _name; }
     }
 }
+
 

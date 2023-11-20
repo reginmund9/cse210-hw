@@ -1,10 +1,12 @@
-class EternalGoal : Goal
+public class EternalGoal : Goal
 {
-    public EternalGoal(string name, string description, int basePoints) : base(name, description, basePoints) { }
-
-    public override int CalculatePoints()
+    public EternalGoal(string name, string description, int points) : base(name, description, points)
     {
-        return _basePoints * _currentProgress;
+    }
+
+    public override void Display()
+    {
+        Console.WriteLine($"[{(IsCompleted() ? "X" : " ")}] {_name} ({_description}), Points: {GetPoints()} (Eternal)");
     }
 }
 

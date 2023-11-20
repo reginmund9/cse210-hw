@@ -1,34 +1,41 @@
-class ChecklistGoal : Goal
+public class CheckListGoal : Goal
 {
-    private int _targetCompletions;
-    private int _bonusPoints;
+    private int bonusCount;
+    private int bonusPoints;
 
-    public ChecklistGoal(string name, string description, int basePoints, int targetCompletions, int bonusPoints) : base(name, description, basePoints)
+    public CheckListGoal(string name, string description, int points, int bonusCount, int bonusPoints) : base(name, description, points)
     {
-        _targetCompletions = targetCompletions;
-        _bonusPoints = bonusPoints;
+        this.bonusCount = bonusCount;
+        this.bonusPoints = bonusPoints;
+    }
+
+    public override void Display()
+    {
+        Console.WriteLine($"[{(IsCompleted() ? "X" : " ")}] {_name} ({_description}), Points: {GetPoints()}, Bonus: {bonusCount}/{bonusPoints}");
     }
 
     public override void MarkComplete()
     {
         base.MarkComplete();
-
-        if (_currentProgress >= _targetCompletions)
+        if (bonusCount >= bonusPoints)
         {
-            Console.WriteLine($"Congratulations! Bonus points earned: {_bonusPoints}");
+            Console.WriteLine($"Bonus Achieved! +{bonusPoints} points");
+            _points += bonusPoints;
+            
+        }
+        else
+        {
+            Console.WriteLine($"Goal Completed! +{GetPoints()} points");
         }
     }
 
-    public override bool IsComplete()
+    public void IncrementBonusCount()
     {
-        return _currentProgress >= _targetCompletions;
+        bonusCount++;
     }
 
-    public override int CalculatePoints()
+    public override void SaveToFile(StreamWriter writer)
     {
-        int regularPoints = _basePoints * _currentProgress;
-        int totalPoints = IsComplete() ? regularPoints + _bonusPoints : regularPoints;
-        return totalPoints;
+        writer.WriteLine($"{GetType().Name}:{_name},{_description},{_points},{bonusCount},{bonusPoints},{IsCompleted()}");
     }
-
 }
